@@ -1,0 +1,28 @@
+sidstar:
+  name: sidstar
+  replicas: 1
+  image:
+    name: localhost:5000/sidstar-be:v1
+    pullPolicy: Always
+    tag: v1
+  service:
+    name: sidstar-svc
+    type: NodePort
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30009
+sidstarUI:
+  name: sidstar-ui
+  replicas: 1
+  image:
+    name: localhost:5000/sidstar-fe:v1
+    pullPolicy: Always
+    tag: v1
+  service:
+    name: sidstar-ui-svc
+    type: NodePort
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+    nodePort: 30010

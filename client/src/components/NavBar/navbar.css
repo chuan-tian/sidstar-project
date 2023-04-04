@@ -1,0 +1,16 @@
+.nav-bar {
+  font-size: 1.3rem;
+  height: 5vh;
+}
+
+.navbar .container {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-bar-main {
+  color: #000000;
+  text-decoration: none;
+}

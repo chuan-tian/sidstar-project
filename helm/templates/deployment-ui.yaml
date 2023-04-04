@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.sidstarUI.name }}
+  name: {{ .Values.sidstarUI.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.sidstarUI.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.sidstarUI.name }}
+    spec:
+      containers:
+      - name: {{ .Values.sidstarUI.name }}
+        image: {{ .Values.sidstarUI.image.name }}
+        imagePullPolicy: {{ .Values.sidstarUI.image.pullPolicy }}
