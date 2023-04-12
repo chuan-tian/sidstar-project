@@ -1,10 +1,19 @@
+global:
+  apiKey:
+
 sidstar:
   name: sidstar
   replicas: 1
   image:
-    name: localhost:5000/sidstar-be:v1
+    name: localhost:5000/sidstar-be
     pullPolicy: Always
     tag: v1
+    env:
+    - name: APIKEY
+      valueFrom:
+        secretKeyRef:
+          name: sidstar-secret
+          key: api-key
   service:
     name: sidstar-svc
     type: NodePort
@@ -16,7 +25,7 @@ sidstarUI:
   name: sidstar-ui
   replicas: 1
   image:
-    name: localhost:5000/sidstar-fe:v1
+    name: localhost:5000/sidstar-fe
     pullPolicy: Always
     tag: v1
   service:
@@ -26,3 +35,5 @@ sidstarUI:
     protocol: TCP
     targetPort: 8081
     nodePort: 30010
+secret:
+  name: sidstar-secret

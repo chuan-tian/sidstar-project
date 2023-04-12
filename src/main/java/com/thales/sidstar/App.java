@@ -9,9 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.apache.log4j.BasicConfigurator;
 
 /**
- * Hello world!
+ * App
  *
  * @throws IOException
+ * @throws InterruptedException
  */
 public class App {
     private static HTTPServer httpServer;
@@ -21,13 +22,14 @@ public class App {
     public static void main(String[] args) throws IOException, InterruptedException {
         // Set up a simple configuration that logs on the console.
         BasicConfigurator.configure();
-
         LOG.info("Starting...");
 
+        // Get all airports
         service = new Service();
         List<String> airports = service.getAllAirports();
-        System.out.println("All available airports: " + airports);
+        LOG.info("All available airports: " + airports);
 
+        // Start HTTP
         httpServer = new HTTPServer();
         httpServer.start(service, airports);
     }

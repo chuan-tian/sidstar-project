@@ -8,11 +8,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class HTTPClient {
+  private static HttpClient client = HttpClient.newHttpClient();
+
   public static String getAll(String endpoint) throws IOException, InterruptedException {
-    HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
         .uri(URI.create(Constants.AIRAC_URL + endpoint))
-        .header("api-key", Constants.API_KEY)
+        .header("api-key", System.getenv("APIKEY"))
         .GET()
         .build();
     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

@@ -16,5 +16,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.sidstar.name }}
-        image: {{ .Values.sidstar.image.name }}
+        image: "{{ .Values.sidstar.image.name }}:{{ .Values.sidstar.image.tag }}"
         imagePullPolicy: {{ .Values.sidstar.image.pullPolicy }}
+        env:
+        {{- toYaml .Values.sidstar.image.env | nindent 8 }}

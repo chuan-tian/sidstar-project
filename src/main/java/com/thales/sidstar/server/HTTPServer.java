@@ -24,7 +24,6 @@ public class HTTPServer {
   public void start(Service serviceInst, List<String> airports) throws IOException {
     LOG.info("Starting HTTP server...");
     service = serviceInst;
-
     server = HttpServer.create(new InetSocketAddress(8080), 0);
 
     createMappings(airports);
@@ -33,9 +32,6 @@ public class HTTPServer {
     server.start();
   }
 
-  /**
-   * 
-   */
   public void stop() {
     LOG.info("Stopping HTTP server...");
 
